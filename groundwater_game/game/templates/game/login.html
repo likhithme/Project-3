@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            /* display: block; */
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            align-content: center;
+            background: url('/static/images/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-size: 25px;
+        }
+
+        .form-container {
+            width: 500px;
+            /* Width of the form box */
+            margin: 100px auto;
+            /* Center the form on the page */
+            padding: 20px;
+            /* border: 1px solid #ccc; */
+            border-radius: 10px;    
+            /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+            /* background-color: #f9f9f9; */
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-container input:focus,
+        .form-container select:focus,
+        .form-container textarea:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        input {
+            /* width: 100%; Make input fields stretch to full width */
+            height: 25px; /* Increase height of input fields */
+            font-size: 1.2rem; /* Increase font size */
+            padding: 8px;
+            /* margin-bottom: 15px; */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        div {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 5px;
+            /* font-size: 25px; */
+            font-family: 'Poppins', sans-serif;
+        }
+        button{
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            background-color: #1b3de9;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+        button:hover{
+            opacity: 0.8;
+        }
+        p{
+            font-size: 20px;
+        }
+        h2{
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <form method="post">
+            <h2>Login</h2>
+            {% csrf_token %}
+            <div>
+                <label for="id_username">Username:</label>
+                {{ form.username }}
+                {{ form.username.errors }}
+            </div>
+            <div>
+                <label for="id_password">Password:</label>
+                {{ form.password }}
+                {{ form.password.errors }}
+            </div>
+            <button type="submit">Login</button>
+            <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
+        </form>
+    </div>
+</body>
+
+</html>

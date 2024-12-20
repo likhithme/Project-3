@@ -1,0 +1,260 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ scenario.title }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url('/static/images/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #0b0505;
+            max-height: max-content;
+        }
+
+        .content-container {
+            padding: 25px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .question-box {
+            background-color: rgba(159, 244, 255, 0.7);
+            padding: 20px;
+            border-radius: 8px;
+            color: #000;
+            width: 750px;
+            height: 425px;
+        }
+
+        .option-box {
+            background-color: #dcfffd;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        label {
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content-container">
+        <h1>{{ scenario.title }}</h1>
+        <p>{{ scenario.description }}</p>
+
+        <h2>Question {{ current_question_number }} of {{ total_questions }}</h2>
+
+        <div class="question-box">
+            <p>{{ current_question.text }}</p>
+            <form method="post">
+                {% csrf_token %}
+                {% for option in options %}
+                <div class="option-box">
+                    <label>
+                        <input type="radio" name="option" value="{{ option.id }}">
+                        {{ option.text }}
+                    </label>
+                </div>
+                {% endfor %}
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ scenario.title }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url('/static/images/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #0b0505;
+        }
+
+        .content-container {
+            padding: 25px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .question-box {
+            background-color: rgba(159, 244, 255, 0.7);
+            padding: 20px;
+            border-radius: 8px;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .option-box {
+            background-color: #dcfffd;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        label {
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            margin: 10px 5px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .explanation {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .explanation h4 {
+            font-size: 1.4rem;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="content-container">
+        <h1>{{ scenario.title }}</h1>
+        <p>{{ scenario.description }}</p>
+
+        <h2>Question {{ current_question_number }} of {{ total_questions }}</h2>
+
+        <div class="question-box">
+            <h3>{{ current_question.text }}</h3>
+            <form method="post">
+                {% csrf_token %}
+                <div class="question">
+                    {% for option in options %}
+                    <div class="option-box">
+                        <label>
+                            <input 
+                                type="radio" 
+                                name="option" 
+                                value="{{ option.id }}" 
+                                {% if selected_option_id and selected_option_id|default:'' == option.id|stringformat:"s" %}checked{% endif %}>
+                            {{ option.text }}
+                        </label>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="buttons">
+                    <button type="submit" name="action" value="submit" class="btn btn-primary">Submit</button>
+                    {% if explanation %}
+                    <button type="submit" name="action" value="next" class="btn btn-secondary">Next</button>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+
+        {% if explanation %}
+        <div class="explanation">
+            <h4>Explanation:</h4>
+            <p>{{ explanation }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+

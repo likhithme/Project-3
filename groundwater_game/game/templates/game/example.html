@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Larger Aligned Form</title>
+    <style>
+        /* Container for the form */
+        .form-container {
+            width: 600px; /* Increased form width */
+            margin: 50px auto;
+            padding: 30px; /* Increased padding */
+            border: 1px solid #ccc;
+            border-radius: 15px; /* Slightly larger border radius */
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+            background-color: #f9f9f9;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px; /* Larger font size for the heading */
+            color: #333;
+        }
+
+        /* Flex layout for form rows */
+        .form-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px; /* More space between rows */
+        }
+
+        .form-row label {
+            width: 25%; /* Adjusted for the larger form */
+            margin-right: 20px; /* Increased space between label and input */
+            font-weight: bold;
+            font-size: 16px; /* Larger label text */
+            color: #555;
+        }
+
+        .form-row input,
+        .form-row select,
+        .form-row textarea {
+            width: 75%; /* Adjusted input width */
+            padding: 15px; /* Larger input padding */
+            font-size: 16px; /* Larger input text */
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .form-row textarea {
+            resize: vertical; /* Allow resizing vertically only */
+        }
+
+        .form-row input:focus,
+        .form-row select:focus,
+        .form-row textarea:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+        }
+
+        /* Button styling */
+        .form-container button {
+            width: 100%;
+            padding: 15px; /* Larger button padding */
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px; /* Larger button font size */
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .form-container button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05); /* Subtle zoom effect */
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Contact Us</h2>
+        <form action="#">
+            <div class="form-row">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-row">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-row">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" placeholder="Write your message" required></textarea>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Game Complete</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: url('/static/images/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Poppins', sans-serif;
+            color: black;
+            text-align: center;
+            margin: 240px;
+            font-size: 25px;
+
+        }
+
+        .complete-container {
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(159, 244, 255, 0.7);
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            align-items: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        p {
+            /* font-size: 1.2rem; */
+            margin: 10px 0;
+        }
+
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        button{
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            background-color: #1b3de9;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+        button:hover{
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="complete-container">
+        <h1>Game Complete</h1>
+        <p><strong>Scenario:</strong> {{ scenario.title }}</p>
+        <p><strong>Your Score:</strong> {{ score }} / {{ total_possible_score }}</p>
+        <p>Great job! Want to try again or play a different scenario?</p>
+        <a href="{% url 'profile' %}"><button>Back to Profile</button></a>
+    </div>
+</body>
+
+</html>
